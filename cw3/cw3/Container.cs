@@ -3,14 +3,14 @@
 public abstract class Container
 {
     private static int _counter = 1;
-    protected double ContainerWeight { get;  }
-    protected double Height { get; }
-    protected double LoadWeight { get; set; }
-    protected double Depth { get; }
-    protected string SerialNum { get; }
-    protected double MaxLoad { get; }
+    public double ContainerWeight { get;  }
+    public double Height { get; }
+    public double LoadWeight { get; set; }
+    public double Depth { get; }
+    public string SerialNum { get; }
+    public double MaxLoad { get; }
 
-    protected Container(string type, double containerWeight, double height, double depth, double maxLoad)
+    public Container(string type, double containerWeight, double height, double depth, double maxLoad)
     {
         SerialNum = $"KON-{type}-{_counter++}";
         ContainerWeight = containerWeight;

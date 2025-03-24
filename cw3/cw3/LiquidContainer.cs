@@ -15,7 +15,7 @@ public class LiquidContainer: Container, IHazardNotifier
         double limit = IsHazardous ? MaxLoad * 0.5 : MaxLoad * 0.9;
         if (LoadWeight + weight > limit)
         {
-            HazardNotification("Limit overflow");
+            HazardNotification($"Limit overflow, limit: {limit}");
         }
         else
         {
