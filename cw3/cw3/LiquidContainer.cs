@@ -15,7 +15,7 @@ public class LiquidContainer: Container, IHazardNotifier
         double limit = IsHazardous ? MaxLoad * 0.5 : MaxLoad * 0.9;
         if (LoadWeight + weight > limit)
         {
-            HazardNotification($"Limit overflow, limit: {limit}");
+            HazardNotification($"Limit overflow, limit: {limit}kg");
         }
         else
         {
@@ -26,5 +26,10 @@ public class LiquidContainer: Container, IHazardNotifier
     public void HazardNotification(string message)
     {
         Console.WriteLine($"WARNING: {SerialNum} - {message}");
+    }
+    
+    public override string ToString()
+    {
+        return base.ToString() + $", IsHazardous: {IsHazardous}";
     }
 }

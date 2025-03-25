@@ -18,6 +18,52 @@ public class Ship
         MaxWeight = maxWeight;
     }
 
+    public void DisplayCargo()
+    {
+        foreach (var c in _containers)
+        {
+            Console.WriteLine(c);
+        }
+    }
+    
+    public void ShipSwap(Ship ship, Container container)
+    {
+        if (ship._containers.Count >= ship.MaxContainers ||
+            ship.TotalWeight() + container.MaxLoad + container.ContainerWeight > ship.MaxWeight)
+        {
+            Console.WriteLine("Can't swap, target ship capacity exceeded.");
+        }
+        else
+        {
+            UnloadContainer(container);
+            ship.LoadContainer(container);
+        }
+    }
+    
+    public void SwapContainers(string serialNum, Container containerToLoad)
+    {
+        var containerToRemove = _containers.Find(c => c.SerialNum == serialNum);
+        if (containerToRemove != null)
+        {
+            if (_containers.Count >= MaxContainers ||
+                TotalWeight() + containerToLoad.MaxLoad + containerToLoad.ContainerWeight > MaxWeight)
+                Console.WriteLine("Can't swap, ship capacity exceeded.");
+            else
+            {
+                UnloadContainer(containerToRemove);
+                LoadContainer(containerToLoad);
+            }
+        }
+    }
+    
+    public void LoadContainers(List<Container> containerList)
+    {
+        foreach (var c in containerList)
+        {
+            LoadContainer(c);
+        }
+    }
+
     public void LoadContainer(Container container)
     {
         if (_containers.Count >= MaxContainers ||
@@ -38,6 +84,6 @@ public class Ship
 
     public override string ToString()
     {
-        return $"Ship {Name}: {_containers.Count} containers loaded.";
+        return $"Ship {Name}: ContainerAmount: {_containers.Count}/{MaxContainers}, CargoMaxWeight: {TotalWeight()}/{MaxWeight}kg, MaxSpeed: {MaxSpeed}";
     }
 }
