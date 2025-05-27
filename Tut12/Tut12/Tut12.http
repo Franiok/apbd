@@ -1,0 +1,6 @@
+@Tut12_HostAddress = http://localhost:5265
+
+GET {{Tut12_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
